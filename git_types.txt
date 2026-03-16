@@ -1,0 +1,63 @@
+CONVENTIONAL COMMITS - HIZLI BAKIS (TYPE REHBERI)
+================================================
+
+Format:
+  type(scope): kisa aciklama
+  (opsiyonel: bos satir)
+  (opsiyonel: detay/body)
+  (opsiyonel: footer)
+
+Notlar:
+- "scope" opsiyoneldir. Ornek scope: ui, plc, udp, docs, build, ci, release
+- Baslik tek satir, kisa ve net olsun.
+- type ile degisiklik turunu standartlastiriyoruz (log, arama, release notlari kolaylasir).
+
+TYPE'LAR (EN SIK KULLANILAN)
+---------------------------
+
+feat: Yeni ozellik (sistemde daha once yoktu, artik var)
+  Ornek:
+    feat(ui): add axis torque chart
+    feat(plc): support new homing sequence
+
+fix: Hata duzeltmesi (yanlis calisiyordu, duzeldi)
+  Ornek:
+    fix(udp): handle packet loss without crash
+    fix(plc): prevent overflow in torque calculation
+
+docs: Dokumantasyon (kod davranisi degismez)
+  Ornek:
+    docs: update setup instructions
+    docs(controls): explain PID tuning workflow
+
+style: Format/whitespace (sadece bicim; davranis degismez)
+  Ornek:
+    style: format code with black
+    style(plc): align structured text indentation
+
+refactor: Kod duzenleme (davranis degismez, yapi temizlenir)
+  Ornek:
+    refactor(parser): split parsing into smaller functions
+    refactor(ui): simplify state management
+
+(chore - bonus ama pratikte cok kullanilir)
+chore: Bakim/housekeeping (ignore, config, script, release meta vb.)
+  Ornek:
+    chore(git): ignore *.~u files
+    chore(release): v2.2.2
+
+HIZLI KARAR AGACI
+----------------
+- Yeni bir ozellik mi ekledin?            -> feat
+- Bug duzelttin mi?                      -> fix
+- Sadece dokuman/README mi?              -> docs
+- Sadece format/indent/whitespace mi?     -> style
+- Davranis ayni, kodu daha temizledin mi? -> refactor
+- Repo bakimi, ignore, script, meta mi?   -> chore
+
+BREAKING CHANGE (opsiyonel)
+--------------------------
+Buyuk degisiklik (geri uyumsuz) varsa:
+  feat!: change config format
+veya body/footer'a:
+  BREAKING CHANGE: config keys renamed
