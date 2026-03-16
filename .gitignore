@@ -7,3 +7,4 @@ dist/
 *.pyc
 sessions/
 .local/
+.config/

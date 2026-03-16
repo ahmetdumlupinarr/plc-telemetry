@@ -20,6 +20,12 @@ Python-first telemetry/logger MVP for Beckhoff/TwinCAT-oriented PLC workflows.
 plc-telemetry record --config examples/ads_config.yaml
 ```
 
+If you do not want to activate the virtual environment in PowerShell, you can run the repository-root runners instead:
+
+```powershell
+.\.venv\Scripts\python.exe .\run_record.py --config .config/ads_config.yaml
+```
+
 4. List sessions:
 
 ```bash
