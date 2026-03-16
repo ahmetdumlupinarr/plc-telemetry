@@ -1,0 +1,54 @@
+project:
+  name: antenna_motion_logger
+  description: Azimuth and elevation telemetry recording
+  storage_root: ./sessions
+
+transport:
+  type: ads
+  ads:
+    ams_net_id: "127.0.0.1.1.1"
+    port: 851
+    poll_interval_ms: 100
+    timeout_ms: 500
+
+session:
+  name_prefix: azimuth_test
+  auto_start: false
+  manifest_notes: Initial telemetry test
+
+channels:
+  - channel_id: 1
+    name: ActPos
+    path: GVL.axAzimuth_ActPos
+    value_type: lreal
+    unit: deg
+    group: motion
+    description: Actual azimuth position
+    display_hint: plot
+    sample_mode: cyclic
+    sample_interval_ms: 100
+    enabled: true
+
+  - channel_id: 2
+    name: SetPos
+    path: GVL.axAzimuth_SetPos
+    value_type: lreal
+    unit: deg
+    group: motion
+    description: Commanded azimuth position
+    display_hint: plot
+    sample_mode: cyclic
+    sample_interval_ms: 100
+    enabled: true
+
+  - channel_id: 3
+    name: AxisReady
+    path: GVL.xAxisReady
+    value_type: bool
+    unit:
+    group: status
+    description: Axis ready state
+    display_hint: bool
+    sample_mode: cyclic
+    sample_interval_ms: 100
+    enabled: true
