@@ -18,4 +18,10 @@ def test_offline_viewer_loads_session(sample_session: Path) -> None:
     window = OfflineViewerWindow(sample_session)
 
     assert sample_session.name in window.windowTitle()
+    assert window._session_title_label.text() == sample_session.name
+    assert window._status_badge.text() == "COMPLETED"
+    assert "relative seconds" in window._plot_panel_subtitle.text().lower()
+    assert window._grid_button.isChecked()
+    assert window._legend_button.isChecked()
+    assert window._channel_list.item(0).sizeHint().height() >= 20
     window.close()
