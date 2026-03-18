@@ -1,39 +1,53 @@
-# PLC Telemetry Platform MVP
+# PLC Telemetry 2.0
 
-Python-first telemetry/logger MVP for Beckhoff/TwinCAT-oriented PLC workflows.
+`dev/2.0` greenfield branch for the Node.js/TypeScript-first replatform.
 
-## Scope
+## Direction
 
-- ADS-based headless data acquisition
-- Session-oriented Parquet recording
-- Session metadata and channel metadata storage
-- Offline viewer for recorded sessions
-- CSV and PNG export
+- Backend: Node.js + TypeScript
+- Frontend: React + TypeScript
+- Runtime target: remote Windows 10 device with a single JavaScript runtime
+- PLC transport strategy: UDP first-class, ADS behind a dedicated feasibility spike
+
+This branch keeps the legacy Python code as a reference, but the 2.0 entrypoint is now the npm workspace under `apps/`.
+
+## Workspace Layout
+
+- `apps/server`: Express API for sessions, exports, transport capability reporting, and future live telemetry
+- `apps/web`: React/Vite operator UI
+- `packages/contracts`: shared TypeScript API contracts
+- `docs/adr`: architecture decisions for the replatform
 
 ## Quick Start
 
-1. Install the package and dependencies.
-2. Update `examples/ads_config.yaml` with your ADS target.
-3. Record a session:
-
 ```bash
-plc-telemetry record --config examples/ads_config.yaml
+npm install
+npm run dev
 ```
 
-If you do not want to activate the virtual environment in PowerShell, you can run the repository-root runners instead:
+Default URLs:
+
+- Web UI: `http://localhost:5173`
+- API: `http://localhost:4000`
+
+To point the server at a different session directory:
 
 ```powershell
-.\.venv\Scripts\python.exe .\run_record.py --config .config/ads_config.yaml
+$env:PLC_TELEMETRY_SESSIONS_DIR='C:\telemetry\sessions'
+npm run dev:server
 ```
 
-4. List sessions:
+## Current Coverage
 
-```bash
-plc-telemetry sessions list
-```
+- Session list API
+- Session detail API
+- Channel metadata API
+- Capability/health API
+- Sample/export routes stubbed for parity planning
 
-5. Open a recorded session:
+## Near-Term 2.0 Goals
 
-```bash
-plc-telemetry view sessions/<timestamp>_<name>
-```
+1. Validate ADS feasibility from Node.js on the target Windows environment.
+2. Add session sample paging/downsampling for the viewer.
+3. Add CSV/PNG export parity.
+4. Add live telemetry and recording control after offline parity is stable.

@@ -1,0 +1,24 @@
+{
+  "name": "plc-telemetry-2-0",
+  "private": true,
+  "version": "2.0.0-dev",
+  "description": "Node.js/TypeScript-first PLC telemetry platform workspace",
+  "workspaces": [
+    "apps/server",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,web -c yellow,cyan \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:server": "npm run dev --workspace @plc-telemetry/server",
+    "dev:web": "npm run dev --workspace @plc-telemetry/web",
+    "build": "npm run build --workspace @plc-telemetry/server && npm run build --workspace @plc-telemetry/web",
+    "check": "npm run check --workspace @plc-telemetry/server && npm run check --workspace @plc-telemetry/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2"
+  }
+}

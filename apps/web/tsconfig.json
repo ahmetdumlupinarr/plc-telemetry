@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "types": ["vite/client"],
+    "paths": {
+      "@contracts": ["../../packages/contracts/src/index.ts"]
+    }
+  },
+  "include": [
+    "src",
+    "../../packages/contracts/src"
+  ]
+}
