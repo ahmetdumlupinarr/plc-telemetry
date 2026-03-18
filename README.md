@@ -17,6 +17,7 @@ This branch keeps the legacy Python code as a reference, but the 2.0 entrypoint 
 - `apps/web`: React/Vite operator UI
 - `packages/contracts`: shared TypeScript API contracts
 - `docs/adr`: architecture decisions for the replatform
+- `legacy/python-mvp`: archived 1.x Python implementation kept only as a migration/reference surface
 
 ## Quick Start
 
@@ -44,6 +45,12 @@ npm run dev:server
 - Channel metadata API
 - Capability/health API
 - Sample/export routes stubbed for parity planning
+
+## Repository Policy
+
+- The repository root is now reserved for active 2.0 Node/TypeScript code.
+- Legacy Python code was moved under `legacy/python-mvp/` to keep the branch clean.
+- Session data remains at `sessions/` so the 2.0 server can read the existing recordings without migration.
 
 ## Near-Term 2.0 Goals
 
